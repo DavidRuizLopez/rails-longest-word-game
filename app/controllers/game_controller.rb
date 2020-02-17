@@ -13,9 +13,7 @@ class GameController < ApplicationController
   def score
     url = open("https://wagon-dictionary.herokuapp.com/" + params[:word]).read
     @word = JSON.parse(url)
-    @result = {
-      time: Time.now
-    }
+    @result = {}
     if in_the_grid?(params[:word], params[:letters]) && @word["found"]
       @result[:score] = @word["length"]
       @result[:message] = "Well Done!"
